@@ -1,4 +1,50 @@
-			body{font-family:Arial, Helvetica, sans-serif;color:#2F4F4F /*darkslategrey*/}
-			h1,h2{color:#708090 /*slategrey*/}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#2F4F4F /*darkslategrey*/}
+
+h1,h2{color:#708090 /*slategrey*/}
+
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
     span.Apple-tab-span {white-space:pre}
+
+table{
+border-collapse:collapse;
+
+}
+
+table.dataTable  tr  td, th{
+
+	border-style:solid;
+	border-width:1px;
+	border-color: #F5F5F5 /* white-smoke*/;
+	padding:5px;
+	font-size:smaller
+}
+
+
+/* Tooltip container */
+.tooltip {
+ /*    position: relative;*/
+   display: block; 
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #F5F5F5 /* white-smoke*/;
+   /*  color: #fff;*/
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 	font-weight:normal;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

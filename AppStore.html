@@ -49,16 +49,52 @@ for Xamarin.
 	<li> System Testing - apple's guidance is <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1">Exporting your App for Testing</a>.
 			Set-up steps are 
 				<ol>
-					<li> Register all test devices - <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingProfiles/MaintainingProfiles.html#//apple_ref/doc/uid/TP40012582-CH30-SW10">Registering Devices Using Your Developer Account</a>. For maria's old Iphone, I used iTunes to find the device id.
-						<li> Archive your app - this is outlined in <a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/ad-hoc-distribution/">Ad-Hoc distribution</a> (IOs, Xamarin). iTunes Connect/Testflight is an alternative route for beta testing but is not availble to users like me.
+					<li> Register all test devices - <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingProfiles/MaintainingProfiles.html#//apple_ref/doc/uid/TP40012582-CH30-SW10">Registering Devices Using Your Developer Account</a>. 
+						For maria's old Iphone, I used iTunes to find the device id.
+						<li> Archive your app - Initial set-up (get signing certificate, project set-up) is outlined at
+							<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/ad-hoc-distribution/">Ad-Hoc Distribution</a> 
+							(iOs, Xamarin). iTunes Connect/Testflight is an alternative route for beta testing but is not availble to users like me.
+						<br />
+						It is then necessary to create a .ipa (the iPhone application archive file - it stores as Iphone app as a compressed binary for ARM architecture
+						 so can only be installed on IPhone, IPad etc. Can be decompressed by changing .ipa to .zip. Cannot be run on simulator because they contain no binary for x86 architecture),
+						which is discussed at 
+						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/ipa_support/">IPA Support</a>.
+						This page states <q>a small iTunesMetadata.plist file is created everytime you build your project and is stored in your project directory</q>. 
+						I cannot see this file. There are links 
+						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution_overview/itunesmetadata/#iTunesMetadata_contents">The iTunesMetadata.plist Contents </a> 
+						and 
+						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution_overview/itunesmetadata/#iTunesMetadata_creating"> Creating an iTunesMetadata.plist File</a>.
+						Frustratingly these links both 404.
+						<br />
+						Next, is the requirement to have some sort of icons available for use by itunes.
+						<br />
+						Eventually there instructions for "Creating an IPA". Unfortunately, the instructions target Xamarin Studio on a Mac rather than Vs on Windows.
+						<br />
+						There is an Archive option in Build menu, but it is disabled....does <a href="https://forums.xamarin.com/discussion/10746/how-to-build-an-adhoc-ipa-file-for-an-ios-app-in-visual-studio-2012-asked-and-answered">this</a> 
+						help? Yes it does key stetps are:
+							<ol>
+								<li>Set Configuration to Ad-Hoc in Solution Configuration/ Project iOS build.
+								<li>Set Project iOS Application
+								<li>Rebuild Solution
+								<li>View .ipa on Mac via Visual Studio's Tools>iOS>Show IPA Files on Build Server.
+							</ol>
+						I also had to upgrade nuget packages (not sure why) and reboot iOs to avoid weird android bug (despite Androidnot being Configured to build) and get the Xamarin Mac Agent working.
+						iTunesMetadata.plist is created on the build server.
 						<br />
 						Other sites
 						<ul>	
 						<li><a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/app-store-distribution/publishing_to_the_app_store/">Publishing to the App Store</a> (iOs, Xamarin) defines the process for actual release.
 						<li><a href="https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/part_1_-_preparing_an_application_for_release/">Preparing application for release</a> (Android, Xamarin).
 												</ul>
-							<li> Export the archive using either an ad hoc provisioning profile or team provisioning profile to code sign your app.</li>
-						<li> Install the app on test devices
+						<li> Export the archive using either an ad hoc provisioning profile or team provisioning profile to code sign your app.
+							</li>
+						<li> Install the app on test devices. Exactly how a device should access the Adhoc Distribution file is not exactly clear. 
+						It can be drag and dropped on to iTunes. I found 
+						<a href="http://mobiledan.net/2012/03/02/5-options-for-distributing-ios-apps-to-a-limited-audience-legally/">this</a> very useful and copied .ipa to shared drive on maria's machine.
+						Itunes displays the adhoc-app and when the device is connected the "	<li> System Testing - apple's guidance is <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1">Exporting your App for Testing</a>." steps at 
+							<li> System Testing - apple's guidance is <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1">Exporting your App for Testing</a>
+						can then be used.
+						
 						<li> Solict crash reports from testers
 				</ol>
 			</li>
