@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html ng-app>
+<html ng-app="myApp">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
@@ -81,7 +81,8 @@
 		$.each(allTh, function(i,e){
 			var field= e.innerText;
 			//replace non-alphanumeric
-			field=field.replace(/\W+/g, " ");
+			//field=field.replace(/\W+/g, " ");
+			field=field.replace(/[^a-z0-9+]+/gi, '');
 			appendString("holder", field)
 			fields.push(field);
 		});
@@ -103,7 +104,9 @@
 
 		appendString("holder", "details count: " + details.length);
 
-
+		var scope = angular.element(document.getElementById("testId")).scope()
+		scope.Details=details;
+		scope.$apply();
    	}
 
 
@@ -113,9 +116,21 @@
    		d.appendChild( document.createTextNode(str));
    		document.getElementById("holder").appendChild(d);   		
    	}
+
+   	var myApp = angular.module('myApp',[]);
+   	myApp.controller('importedDataController', ['$scope',function($scope){
+   							$scope.Details = [{"Source":"aa", "Notes":"ddd"}];
+
+   							$scope.ReplaceDetails= function(x){
+   									Details=x;
+   									//appendString("holder", "changed fields");
+   									};
+   		}]
+   	);
+
 	</script>
 </head>
-<body >
+	<body >
 
 	<header class='header' ng-include="'header.html'" ></header>
 
@@ -125,10 +140,22 @@
 	</p>
 	<p>This is agood resource: <a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications"></a></p>
 
+	<!-- select the file we'd like to extract data from -->
 	<input type="file" id="input" onchange="handleFiles(this.files)" />
 
 	<div id="holder">
-		123
+	</div>
+
+	<!-- div that angular will populate with data from another page
+	https://www.w3schools.com/angular/angular_tables.asp
+	  -->
+	<div id="testId" ng-app="myApp" ng-controller="importedDataController">
+	   <table>
+	   		<tr ng-repeat="x in Details">
+	   			<td>{{x.Source}}</td>
+	   			<td>{{x.Notes}}</td>
+	   		</tr>
+	   </table>
 	</div>
 	</body>
 </html>
