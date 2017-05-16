@@ -22,4 +22,6 @@ function Start(){
 			}	
 		});
 
+	 $("#header").load("header.html"); 
+	  $("#header").addClass("header"); 
 }

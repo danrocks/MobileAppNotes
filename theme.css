@@ -21,6 +21,11 @@ table.dataTable  tr  td, th{
 	font-size:smaller
 }
 
+.header a,
+#header a {
+font-weight:lighter;
+    font: 12.0px Helvetica
+}
 
 /* Tooltip container */
 .tooltip {

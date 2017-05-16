@@ -15,10 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
+<div id="header"></div>		
 <h1>AppStore Releasing</h1>
 <p>On this page I'm trying to list details about how to release to Appstore and the hoops that must be gone through.</p>
 <p>Apple's notes on Application Distribution Workflows are here: <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html"> </a></p>
-<p>Note that the above focuses on XCode but I am using Xamarin. Specific guidelines for Xamarin are here <a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/app-store-distribution/publishing_to_the_app_store/">Publishing to the App Store</a></p>
+<p>Note that the above focuses on XCode but I am using Visual Studio-Xamarin. Specific guidelines for Xamarin are here <a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/app-store-distribution/publishing_to_the_app_store/">Publishing to the App Store</a></p>
 <p><a href="https://itunesconnect.apple.com/login?targetUrl=%2FWebObjects%2FiTunesConnect.woa&authResult=FAILED">iTunes Connect</a>
 		is also an important suite of web based tools - it manages IoS apps on te App Store and xamarin.iOs app will need properly set-up on this.
 </p>
@@ -50,7 +51,7 @@ for Xamarin.
 			Set-up steps are 
 				<ol>
 					<li> Register all test devices - <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingProfiles/MaintainingProfiles.html#//apple_ref/doc/uid/TP40012582-CH30-SW10">Registering Devices Using Your Developer Account</a>. 
-						For maria's old Iphone, I used iTunes to find the device id.
+						For maria's old iPhone, I used iTunes to find the device id.
 						<li> Archive your app - Initial set-up (get signing certificate, project set-up) is outlined at
 							<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/ad-hoc-distribution/">Ad-Hoc Distribution</a> 
 							(iOs, Xamarin). iTunes Connect/Testflight is an alternative route for beta testing but is not availble to users like me.
@@ -60,7 +61,7 @@ for Xamarin.
 						which is discussed at 
 						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution/ipa_support/">IPA Support</a>.
 						This page states <q>a small iTunesMetadata.plist file is created everytime you build your project and is stored in your project directory</q>. 
-						I cannot see this file. There are links 
+						Initially I could not find this file. There are links 
 						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution_overview/itunesmetadata/#iTunesMetadata_contents">The iTunesMetadata.plist Contents </a> 
 						and 
 						<a href="https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/app_distribution_overview/itunesmetadata/#iTunesMetadata_creating"> Creating an iTunesMetadata.plist File</a>.
@@ -70,15 +71,18 @@ for Xamarin.
 						<br />
 						Eventually there instructions for "Creating an IPA". Unfortunately, the instructions target Xamarin Studio on a Mac rather than Vs on Windows.
 						<br />
-						There is an Archive option in Build menu, but it is disabled....does <a href="https://forums.xamarin.com/discussion/10746/how-to-build-an-adhoc-ipa-file-for-an-ios-app-in-visual-studio-2012-asked-and-answered">this</a> 
-						help? Yes it does key stetps are:
+						There is an Archive option in Build menu, but it is disabled....does 
+						<a href="https://forums.xamarin.com/discussion/10746/how-to-build-an-adhoc-ipa-file-for-an-ios-app-in-visual-studio-2012-asked-and-answered">
+							How to build an adhoc IPA file for an IOS app in Visual Studio 2012 (asked and answered)
+						</a> 
+						help? Yes it does key steps are:
 							<ol>
 								<li>Set Configuration to Ad-Hoc in Solution Configuration/ Project iOS build.
 								<li>Set Project iOS Application
 								<li>Rebuild Solution
 								<li>View .ipa on Mac via Visual Studio's Tools>iOS>Show IPA Files on Build Server.
 							</ol>
-						I also had to upgrade nuget packages (not sure why) and reboot iOs to avoid weird android bug (despite Androidnot being Configured to build) and get the Xamarin Mac Agent working.
+						I also had to upgrade nuget packages (not sure why) and reboot iOs to avoid weird android bug (despite Android not being configured to build) and get the Xamarin Mac Agent working.
 						iTunesMetadata.plist is created on the build server.
 						<br />
 						Other sites
@@ -90,12 +94,22 @@ for Xamarin.
 							</li>
 						<li> Install the app on test devices. Exactly how a device should access the Adhoc Distribution file is not exactly clear. 
 						It can be drag and dropped on to iTunes. I found 
-						<a href="http://mobiledan.net/2012/03/02/5-options-for-distributing-ios-apps-to-a-limited-audience-legally/">this</a> very useful and copied .ipa to shared drive on maria's machine.
-						Itunes displays the adhoc-app and when the device is connected the "	<li> System Testing - apple's guidance is <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1">Exporting your App for Testing</a>." steps at 
-							<li> System Testing - apple's guidance is <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1">Exporting your App for Testing</a>
-						can then be used.
-						
-						<li> Solict crash reports from testers
+						<a href="http://mobiledan.net/2012/03/02/5-options-for-distributing-ios-apps-to-a-limited-audience-legally/">
+						5 Options for Distributing Your iOS App to a Limited Audience</a> 
+						very useful.
+						<ol>
+						<li>I copied .ipa to shared drive on Maria's laptop, and then dragged and dropped it on to iTunes.
+						<li>I switched back to my laptop, and added .ipa to it's iTunes instance in a similar fashion.
+						<li>I connected the old iphone to the laptop.
+						<li>The iphone appears in iTunes and I tried drag-dropping the MyVirtualClinic app.
+						<li>Finally I got a useful message:
+						<br /><cite>The app "MyVirtualClinic" was not installed on the iPhone "Maria's iphone iOs6" because it requires a newer version of iPhone software.</cite>
+						<br />which is nice error message that might be addressed. I found 
+						<a href="http://stackoverflow.com/questions/20940515/minimum-macos-version-required-to-compile-ios-apps">
+								this</a> which suggests getting maria's old iPhone working <emp>may</emp> be impossible. So I used the adhoc
+								approach to put MyVirtualClinic in the iPad. I tested it, and it crashed when trying to upload...
+						</ol>
+						<li> Solict crash reports from testers.
 				</ol>
 			</li>
 	<li> User Acceptance testing</li>
