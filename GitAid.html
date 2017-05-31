@@ -39,9 +39,30 @@
         $ git push -u origin master
     </p>
 
- <h2>Win 10 - VS2015</h2>
+    <h2>Cloning</h2>
     <p>
-        VS does make it quite simple to commit changes and push them to github (this blog assumes GitHub has previously been wired up).
+        I recently had cause to pull files originally created on my MAC into Windows (the files were already in GitHub).
+    </p>
+    <p>
+        Github's Clone button worked really smoothly, although I did note it chose it's own
+        target directory. I expect there is a way to pick my own directory structure but it isn't immediately obvious.
+    </p>
+
+
+    <h2>Win 10 - VS2015 - Initial Commit</h2>
+    <p>
+    VS2015 makes it pretty easy to submit a new repository to github. In Team Explorer simply seek out "Create"
+        and complete the short, sensible form. Obviously there is a dependency on having Git Extensions installed
+        and a github account
+    </p>
+    <p>
+        Without VS/GitExtensions the best way seems to be to create new repository directly on Github. Thien clone this 
+        and add your new data before commiting and syncing
+    </p>
+
+ <h2>Win 10 - VS2015 - Normal Commit</h2>
+    <p>
+        VS does make it quite simple to commit changes and push them to github (assuming GitHub has previously been wired up via initial commit or cloning).
     </p>
     <p>
         Simply navigate to the Team Explorer view and click on the changes button.
@@ -51,13 +72,19 @@
     </p>
     <p>Once message is provided, "Commmit all" is enabled - hit it.</p>
 
-    <h2>Cloning</h2>
+    <h2>Win 10 - Command line - Normal Commit</h2>
     <p>
-        I recently had cause to pull files originally created on my MAC into Windows (the files were already in GitHub). 
+        You can always use git from the command line...Start by navigating to your existing git repository (the one with the changes you wish to commit and store)
     </p>
     <p>
-        Github's Clone button worked really smoothly, although I did note it chose it's own 
-        target directory. I expect there is a way to pick my own directory structure but it isn't immediately obvious.
+        git commit -m "provide a useful message"
+
+    </p>
+    <p>
+        git remote add origin https://github.com/danrocks/MobileAppNotes.git
+    </p>
+    <p>
+        git push -u origin master
     </p>
 </body>
 	
