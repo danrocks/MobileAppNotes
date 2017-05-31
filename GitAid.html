@@ -10,32 +10,55 @@
 <body>
 <div id="header"></div>		
 <h1>Useful Git knowledge</h1>
-<p>Git should be run from the <strong>Terminal</strong>. 
-Start by navigating to the local git repository folder (make a git folder by importing from remote and running git init).			
-		</p>
-<p>
-The terminal can also be used to create files with "touch myNewFile.xxx"
-</p>
-<p>
-		A good synopsis is <a href="http://www.mattboldt.com/using-git-for-websites/">Using Git for WebSites</a>
-		</p>
-<p>
-To commit and push changes (<a href="https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/">here</a>):
-</p>
-<p>
-Add the files to be committed. This stages them for the first commit.
-<br />
-$ git add .
-		</p>
-<p>
-Commit the files that you've staged in your local repository.
-<br />
-$ git commit -m "commit notes"
-		</p>
-<p>
-Push the changes in your local repository to GitHub.
-$ git push -u origin master
-		</p>
+<h2>Mac</h2>
+    <p>
+        Git should be run from the <strong>Terminal</strong>.
+        Start by navigating to the local git repository folder (make a git folder by importing from remote and running git init).
+    </p>
+    <p>
+        The terminal can also be used to create files with "touch myNewFile.xxx"
+    </p>
+    <p>
+        A good synopsis is <a href="http://www.mattboldt.com/using-git-for-websites/">Using Git for WebSites</a>
+    </p>
+    <p>
+        To commit and push changes (<a href="https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/">here</a>):
+    </p>
+    <p>
+        Add the files to be committed. This stages them for the first commit.
+        <br />
+        $ git add .
+    </p>
+    <p>
+        Commit the files that you've staged in your local repository.
+        <br />
+        $ git commit -m "commit notes"
+    </p>
+    <p>
+        Push the changes in your local repository to GitHub.
+        $ git push -u origin master
+    </p>
+
+ <h2>Win 10 - VS2015</h2>
+    <p>
+        VS does make it quite simple to commit changes and push them to github (this blog assumes GitHub has previously been wired up).
+    </p>
+    <p>
+        Simply navigate to the Team Explorer view and click on the changes button.
+    </p>
+    <p>
+        Changed files should be listed - eyeball to make sure there are no surprises. Then provide the commit message.
+    </p>
+    <p>Once message is provided, "Commmit all" is enabled - hit it.</p>
+
+    <h2>Cloning</h2>
+    <p>
+        I recently had cause to pull files originally created on my MAC into Windows (the files were already in GitHub). 
+    </p>
+    <p>
+        Github's Clone button worked really smoothly, although I did note it chose it's own 
+        target directory. I expect there is a way to pick my own directory structure but it isn't immediately obvious.
+    </p>
 </body>
 	
 </html>
